@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Quản lý thông tin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+
+      <header class="display-4 my-4">
+        Thực hành xây dựng app
+      </header>
+      <!-- Phan tab menu -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            href="#DanhSachSP"
+            role="tab"
+            data-toggle="tab"
+            >Danh sách đối tượng</a
+          >
+        </li>
+        
+      </ul>
+      <br />
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <!--Danh sách đối tượng -->
+        <div role="tabpanel" class="tab-pane  in active" id="DanhSachDT">
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <select class="form-control" id="SelectParent">
+                <option value="0">Chọn đối tượng</option>
+                <option value="student">Student</option>
+                <option value="employee">Employee</option>
+                <option value="customer">Customer</option>
+            </select>
+            </div>
+            <div class="col-md-6 text-right">
+              <!-- BEGIN BUTTOM THÊM MỚI -->
+              <button
+                id="btnThemDT"
+                class="btn btn-success"
+                data-toggle="modal"
+                data-target="#myModal"
+              >
+                <i class="fa fa-plus mr-1"></i>
+                Thêm Mới
+              </button>
+              <!-- END BUTTON THÊM MỚI -->
+            </div>
+          </div>
+          <div class="clear-fix"></div>
+          <div class="tblSanPham" id="tblDoiTuong">
+            <!-- BEGIN TABLE -->
+            <table class="table table-bordered">
+              <thead>
+                <th>STT</th>
+                <th>Họ và tên</th>
+                <th>Địa chỉ</th>
+                <th>Email</th>
+                <th>Loại đối tượng</th>
+                <th>Điểm Toán</th>
+                <th>Điểm Lý</th>
+                <th>Điểm Hóa</th>
+                <th>DTB</th>
+                <th>Số ngày làm</th>
+                <th>Lương</th>                
+                <th>Tổng lương</th>                
+                <th>Tên công ty</th>                
+                <th>Giá hóa đơn</th>                
+                <th>Đánh giá</th>                
+                <th>Action</th>
+              </thead>
+              <tbody id="tblDanhSachDT"></tbody>
+            </table>
+            <!-- END TABLE -->
+          </div>
+          <br />
+        </div>
+        <!-- Kết thúc danh sách -->       
+      </div>
+
+      <!--KetThuc Tabmenu-->
+
+      <!-- The Modal -->
+      <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Thêm đối tượng vào danh sách</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-group form-select">
+                    <label for="">Loại đối tượng: </label>
+                    <select class="form-control" id="loaiDT">
+                        <option value="0">Chọn đối tượng</option>
+                        <option value="student">Student</option>
+                        <option value="employee">Employee</option>
+                        <option value="customer">Customer</option>
+                    </select>
+                </div>
+              <div class="form-group form-all">
+                <label>Họ và tên</label>
+                <input type="text"
+                  id="Ten"
+                  class="form-control"
+                  placeholder="Nhập tên"
+                />
+              </div>
+              <div class="form-group form-all">
+                <label>Địa chỉ</label>
+                <input
+                  id="DiaChi"
+                  class="form-control"
+                  placeholder="Nhập địa chỉ"
+                />
+              </div>             
+              <div class="form-group form-all">
+                <label>Email</label>
+                <input type="email"
+                  id="Email"
+                  class="form-control"
+                  placeholder="Nhập email..."
+                />
+              </div>
+              <div class="form-group form-student">
+                <label>Điểm Toán</label>
+                <input type="number"
+                  id="Toan"
+                  class="form-control"
+                  placeholder="Nhập Toán"
+                />
+              </div>
+              <div class="form-group form-student">
+                <label>Điểm Lý</label>
+                <input type="number"
+                  id="Ly"
+                  class="form-control"
+                  placeholder="Nhập Lý"
+                />
+              </div>
+              <div class="form-group form-student">
+                <label>Điểm Hóa</label>
+                <input type="number"
+                  id="Hoa"
+                  class="form-control"
+                  placeholder="Nhập Hóa"
+                />
+              </div>
+              <div class="form-group form-employee">
+                <label>Số ngày làm việc</label>
+                <input type="number"
+                  id="soNgayLam"
+                  class="form-control"
+                  placeholder="Nhập số ngày làm"
+                />
+              </div>
+              <div class="form-group form-employee">
+                <label>Lương theo ngày</label>
+                <input
+                  id="luong"
+                  class="form-control"
+                  placeholder="Nhập lương"
+                />
+              </div>
+              <div class="form-group form-customer">
+                <label>Tên công ty</label>
+                <input
+                  id="tenCty"
+                  class="form-control"
+                  placeholder="Nhập tên cty"
+                />
+              </div>
+              <div class="form-group form-customer">
+                <label>Giá hóa đơn</label>
+                <input
+                  id="giaHoaDon"
+                  class="form-control"
+                  placeholder="Nhập giá"
+                />
+              </div>
+              <div class="form-group form-customer">
+                <label>Đánh giá</label>
+                <input
+                  id="danhGia"
+                  class="form-control"
+                  placeholder="Đánh giá"
+                />
+              </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container"></div>
+    <style>
+      #container {
+        min-width: 310px;
+        max-width: 800px;
+        height: 400px;
+        margin: 0 auto;
+      }
+    </style>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="./js/DanhSachDoiTuong.js"></script>
+    <script src="./js/DoiTuong.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
